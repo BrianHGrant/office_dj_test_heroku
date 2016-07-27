@@ -1,0 +1,117 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header logo">
+      <h3><img src="/img/logo.png" alt="logo" /> Office DJ</h3>
+      <h3><a href="/">Sign In</a></h3>
+    </div>
+    <div class="nav navbar-nav navbar-right">
+      <h5><a href="/logout">Sign Out</a></h5>
+      <h2><%= @user.username %></h2>
+    </div>
+  </div>
+</nav>
+
+<div class="container text-center">
+  <div class="row">
+    <div class="col-sm-3 col well">
+      <div class="well">
+        <p><%=@user.username%></p>
+        <img src="/img/photo.jpeg" class="img-circle" height="65" width="65" alt="Avatar">
+      </div>
+      <div class="well">
+        <p>Level 9</p>
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%">
+            80%
+          </div>
+        </div>
+        <p>
+          <span class="label label-default">News</span>
+          <span class="label label-primary">W3Schools</span>
+          <span class="label label-success">Labels</span>
+          <span class="label label-info">Football</span>
+          <span class="label label-warning">Gaming</span>
+          <span class="label label-danger">Friends</span>
+        </p>
+      </div>
+      <div class="well top-votes">
+        <p><strong>Top Upvotes</strong></p>
+        <ul>
+          <li>TLC - No Scrubs</li>
+          <li>Britney Spears - Stronger</li>
+          <li>Katy Perry - Firework</li>
+          <li>Chaka Khan - I'm Every Woman</li>
+          <li>Enya - Only Time</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-4 col well">
+      <h3>Search for Your Song:</h3>
+      <form class="form group" action="/song" method="post">
+        <input class="col-sm-10 input-sm search-field" type="text" name="name">
+        <button type="submit" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-search"></span></button>
+      </form>
+      <br>
+      <div class="well">
+        <h3>Your Search Results:</h3>
+        <% if @songs.any? %>
+        <ul>
+          <% @songs.each do |track| %>
+            <li>
+              <form class="" action="/song/<%=@dj.id%>" method="post">
+                <input type="hidden" name="libraryId" value="<%=track.id %>">
+                <button id="playlist_submit" type="submit" name="button"><%= track.artist %> - <%= track.name %></button>
+              </form>
+            </li>
+          <% end %>
+        </ul>
+        <% else %>
+        <p> No results</p>
+        <% end %>
+        <br><br><br><br><br>
+      </div>
+      <div class="well team-channel">
+        <h3>Team Channel</h3>
+        <% if @users.any? %>
+          <ul>
+            <% @users.each do |user|%>
+            <li>@<%= user.username%> - Level 10</li>
+          <%end%>
+        </ul>
+        <%end%>
+      </div>
+    </div>
+    <div class="col-sm-5 col well">
+      <div class="thumbnail">
+        <h3>Now Playing: DJ Tony</h3>
+        <% if @playlist && @songs %>
+          <img src="<%= Library.find(@now_playing.library_id).image %>" alt="album" width="400" height="300">
+        <% else %>
+          <img src="/img/logo.png" alt="album" width="400" height="300">
+        <% end %>
+        <p><strong>Celine Dion</strong></p>
+        <p>My Heart Will Go On</p>
+        <iframe src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+      </div>
+      <div class="well up-next">
+        <h3>Up Next:</h3>
+          <% if @playlist %>
+          <ul>
+            <% @playlist.each do |song| %>
+            <li>@<%= Dj.find(song.dj_id).name%>: <%= Library.find(song.library_id).artist %> - <%= Library.find(song.library_id).name %>
+
+            <form class="voting" action="/song/song.id/downvote" method="post">
+              <button class="btn-danger" type="button" name="button"><span class="glyphicon glyphicon-volume-down"></span></button>
+            </form>
+            <form class="voting" action="/song/song.id/upvote" method="post">
+              <button class="btn-primary" type="button" name="button"><span class="glyphicon glyphicon-volume-up"></span></button>
+            </form></li>
+            <% end %>
+          </ul>
+          <% else %>
+          <p>There are no songs in the queue.</p>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>

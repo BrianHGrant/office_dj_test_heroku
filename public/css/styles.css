@@ -1,0 +1,106 @@
+.navbar {
+  color: #cccccc;
+}
+
+.logo img {
+  width: 2em;
+  padding-bottom: 1px;
+}
+
+.login {
+  height: 99vh;
+  width: 100vw;
+  background-image: url(/img/login.jpeg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  color: hotpink;
+  font-family: myneon;
+  font-size: 2em;
+}
+
+.login a {
+  color: hotpink;
+}
+
+.login h1 {
+  font-size: 3em;
+}
+
+@font-face {
+  font-family: myneon;
+  src: url(/fonts/neon.ttf);
+}
+
+ul {
+  list-style-type:none;
+  padding-left: 0px;
+}
+
+body {
+  background-color: rgba(51, 76, 91, 1);
+}
+
+.well {
+  background-color: rgba(180, 196, 205, .5);
+  border-width: thin;
+  border-color: rgba(35, 53, 64, 1);
+  color: white;
+}
+
+.thumbnail {
+  color: black;
+}
+
+.navbar-right {
+  padding-top: 1.5em;
+  padding-right: 2em;
+}
+
+.top-votes li{
+  text-align: left;
+}
+
+.row {
+  overflow: hidden;
+}
+
+.col {
+  margin-bottom: -99999px;
+  padding-bottom: 99999px;
+
+}
+
+.search-field {
+  color: black;
+}
+
+#playlist_submit {
+  border: none;
+  color: blue;
+  background: none;
+}
+
+.team-channel li {
+  list-style-type: circle;
+  list-style-position: inside;
+}
+
+.up-next li {
+  line-height: 3em;
+  text-align: left;
+}
+
+.voting{
+  float: right;
+}
+
+.voting button{
+margin: auto;
+padding-top: 0px;
+padding-bottom: 25px;
+height: 20px;
+width: 100%;
+display: block;
+font-size: 20px;
+line-height: normal;
+}
